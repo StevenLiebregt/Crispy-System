@@ -1,0 +1,22 @@
+{
+    "name": "stevenliebregt/crispysystem",
+    "description": "Simple framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steven Liebregt",
+            "email": "s.liebregt@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "symfony/http-foundation": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "StevenLiebregt\\CrispySystem\\": "src/",
+            "Test\\Controllers\\": "controllers/"
+        }
+    }
+}
