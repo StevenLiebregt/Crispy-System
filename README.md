@@ -1,3 +1,6 @@
+# NOTE!!!
+This is still a work in progress.
+
 # CrispySystem
 CrispySystem is a lightweight minimal framework, originally built for the sole purpose of me having to do less during my exams.
 

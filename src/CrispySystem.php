@@ -3,6 +3,7 @@
 namespace StevenLiebregt\CrispySystem;
 
 use StevenLiebregt\CrispySystem\Container\Container;
+use StevenLiebregt\CrispySystem\Helpers\Config;
 use StevenLiebregt\CrispySystem\Routing\Route;
 use StevenLiebregt\CrispySystem\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,20 +14,29 @@ class CrispySystem extends Container
     const VERSION = '1.0.0-alpha';
 
     /**
-     * @var string $root Contains the server root
-     */
-    protected $root;
-
-    /**
      * @var Response $response
      */
     protected $response;
 
-    public function __construct(string $root)
+    public function __construct()
     {
         require __DIR__ . '/Helpers/helpers.php'; // Load basic helpers
 
-        $this->setRoot($root);
+        if (!file_exists(ROOT . 'storage') || !is_dir(ROOT . 'storage')) {
+            showPlainError('Storage directory does not exist, please create one in your root');
+        }
+
+        if (!is_writable(ROOT . 'storage')) {
+            showPlainError('Storage directory is not writable, try running `chmod -R 0777 storage` in your root');
+        }
+
+        /**
+         * Pre-load the configuration
+         */
+        if (!file_exists(ROOT . 'storage/crispysystem.config.php') || DEVELOPMENT) {
+            Config::cache();
+        }
+        Config::init();
     }
 
     /**
@@ -40,15 +50,6 @@ class CrispySystem extends Container
         $this->response = $this->handle($request);
 
         $this->response->send();
-    }
-
-    /**
-     * Sets the application root, and adds a trailing slash where necessary
-     * @param string $root Root directory
-     */
-    protected function setRoot(string $root) : void
-    {
-        $this->root = (substr($root, -1) === '/' ? $root : $root . '/');
     }
 
     protected function handle(Request $request) : Response
@@ -66,7 +67,7 @@ class CrispySystem extends Container
                 try {
                     $content = $this->resolveFunction($handler);
                 } catch (\Exception $e) {
-                    if (DEBUG) {
+                    if (DEVELOPMENT) {
                         showPlainError('Something went wrong while resolving a closure, details below:', false);
                         pr($e);
                         exit;
@@ -81,7 +82,7 @@ class CrispySystem extends Container
                     $instance = $this->getInstance($controller);
                     $content = $this->resolveMethod($instance, $method, $match->getParameters());
                 } catch (\Exception $e) {
-                    if (DEBUG) {
+                    if (DEVELOPMENT) {
                         showPlainError('Something went wrong while resolving a controller, details below:', false);
                         pr($e);
                         exit;
