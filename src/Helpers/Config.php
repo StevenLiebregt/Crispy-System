@@ -13,41 +13,35 @@ class Config
 
     public static function cache() : void
     {
-        if (!file_exists(ROOT . 'config') || !is_dir(ROOT . 'config')) {
+        $cache = [];
 
-            $cache = [];
+        $finder = (new Finder())
+            ->files()
+            ->name('/.+\.php/')
+            ->in(ROOT . 'config');
 
-            $finder = (new Finder())
-                ->files()
-                ->name('/.+\.php/')
-                ->in(ROOT . 'config');
+        /** @var SplFileInfo $file */
+        foreach ($finder as $file) {
+            $category = str_ireplace('.php', '', $file->getFilename());
+            $config = require $file->getRealPath();
 
-            /** @var SplFileInfo $file */
-            foreach ($finder as $file) {
-                $category = str_ireplace('.php', '', $file->getFilename());
-                $config = require $file->getRealPath();
-
-                $cache[$category] = $config;
-            }
-
-            file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
+            $cache[$category] = $config;
         }
+
+        file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
     }
 
     public static function init() : void
     {
-        if (!file_exists(ROOT . 'config') || !is_dir(ROOT . 'config')) {
+        $file = ROOT . 'storage/crispysystem.config.php';
 
-            $file = ROOT . 'storage/crispysystem.config.php';
-
-            if (!is_readable($file)) {
-                showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
-            }
-
-            $config = unserialize(file_get_contents($file));
-
-            static::$config = $config;
+        if (!is_readable($file)) {
+            showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
         }
+
+        $config = unserialize(file_get_contents($file));
+
+        static::$config = $config;
     }
 
     public static function get($key = null)
