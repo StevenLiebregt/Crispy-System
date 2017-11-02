@@ -13,18 +13,23 @@ CrispySystem is a lightweight minimal framework, originally built for the sole p
    use StevenLiebregt\CrispySystem\CrispySystem;
    use StevenLiebregt\CrispySystem\Routing\Router;
    use StevenLiebregt\CrispySystem\Routing\Route;
+
+   define('DEVELOPMENT', true);   
+   define('ROOT', __DIR__ . '/../');
    
-   define('DEBUG', false); // Set to true to show extra error messages
-   
-   $root = __DIR__ . '/../'; // Set this to your root, my configuration has a `public` public root
-   
+   /**
+    * Set error display
+    */
+   error_reporting(-1);
+   ini_set('error_reporting', '1');
+   ini_set('display_errors', '1');
+
    /**
     * Require the composer autoloader
     */
-
-   require $root . 'vendor/autoload.php'; // Set this to the location your composer autoload is in
+   require ROOT . 'vendor/autoload.php'; // Set this to the location your composer autoload is in
    
-   $crispysystem = new CrispySystem($root);
+   $crispysystem = new CrispySystem();
    
    /**
     * Add routes
