@@ -14,8 +14,6 @@ class SmartyView implements IView
      */
     protected $smarty;
 
-    protected $templateDir;
-
     /**
      * @var
      */
@@ -84,10 +82,11 @@ class SmartyView implements IView
     }
 
     /**
+     * Sets the template
      * @param string $file
      * @return SmartyView
      */
-    public function template(string $file) : SmartyView
+    public function template(string $file) : SmartyView // TODO-PR1 : SL : Add checking if template exists
     {
         $this->template = $file;
 
