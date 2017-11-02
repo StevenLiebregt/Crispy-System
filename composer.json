@@ -13,7 +13,8 @@
         "php": ">=7.1",
         "symfony/http-foundation": "^3.3",
         "phpunit/phpunit": "^6.4",
-        "symfony/finder": "^3.3"
+        "symfony/finder": "^3.3",
+        "smarty/smarty": "^3.1"
     },
     "autoload": {
         "psr-4": {

@@ -1,10 +1,12 @@
 .idea/
 
 # Initial development directories
+config/
 controllers/
 modules/
 public/
 storage/
+templates/
 
 # Composer vendor folder
 vendor/
