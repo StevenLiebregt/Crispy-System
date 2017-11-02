@@ -30,7 +30,7 @@ class CrispySystem extends Container
             showPlainError('Storage directory is not writable, try running `chmod -R 0777 storage` in your root');
         }
 
-        if (!file_exist(ROOT . 'config' || !is_dir(ROOT . 'config')) {
+        if (!file_exists(ROOT . 'config') || !is_dir(ROOT . 'config')) {
             showPlainError('Config directory does not exist, please create one in your root');
         }
 
