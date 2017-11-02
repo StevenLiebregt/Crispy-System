@@ -7,39 +7,47 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class Config
 {
+    private static $skip = false;
+
     private static $config = [];
 
     public static function cache() : void
     {
-        $cache = [];
+        if (!file_exists(ROOT . 'config') || !is_dir(ROOT . 'config')) {
 
-        $finder = (new Finder())
-            ->files()
-            ->name('/.+\.php/')
-            ->in(ROOT . 'config');
+            $cache = [];
 
-        /** @var SplFileInfo $file */
-        foreach ($finder as $file) {
-            $category = str_ireplace('.php', '', $file->getFilename());
-            $config = require $file->getRealPath();
+            $finder = (new Finder())
+                ->files()
+                ->name('/.+\.php/')
+                ->in(ROOT . 'config');
 
-            $cache[$category] = $config;
+            /** @var SplFileInfo $file */
+            foreach ($finder as $file) {
+                $category = str_ireplace('.php', '', $file->getFilename());
+                $config = require $file->getRealPath();
+
+                $cache[$category] = $config;
+            }
+
+            file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
         }
-
-        file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
     }
 
     public static function init() : void
     {
-        $file = ROOT . 'storage/crispysystem.config.php';
+        if (!file_exists(ROOT . 'config') || !is_dir(ROOT . 'config')) {
 
-        if (!is_readable($file)) {
-            showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
+            $file = ROOT . 'storage/crispysystem.config.php';
+
+            if (!is_readable($file)) {
+                showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
+            }
+
+            $config = unserialize(file_get_contents($file));
+
+            static::$config = $config;
         }
-
-        $config = unserialize(file_get_contents($file));
-
-        static::$config = $config;
     }
 
     public static function get($key = null)
