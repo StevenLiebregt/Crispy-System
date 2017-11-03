@@ -6,6 +6,7 @@ controllers/
 modules/
 public/
 storage/
+schemas/
 templates/
 
 # Composer vendor folder
