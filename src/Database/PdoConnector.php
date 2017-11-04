@@ -1,10 +1,10 @@
 <?php
 
-namespace StevenLiebregt\CrispySystem\Database\Connectors;
+namespace StevenLiebregt\CrispySystem\Database;
 
 use StevenLiebregt\CrispySystem\Helpers\Config;
 
-class PdoConnector implements IConnector
+class PdoConnector
 {
     private $connection;
 
