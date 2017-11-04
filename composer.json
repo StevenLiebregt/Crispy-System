@@ -18,6 +18,9 @@
     "require-dev": {
         "phpunit/phpunit": "^6.4"
     },
+    "bin": [
+        "bin/crispysystem"
+    ],
     "autoload": {
         "psr-4": {
             "StevenLiebregt\\CrispySystem\\": "src/",

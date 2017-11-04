@@ -4,6 +4,7 @@
 config/
 controllers/
 modules/
+models/
 public/
 storage/
 schemas/
