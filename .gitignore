@@ -1,5 +1,7 @@
 .idea/
 
+*.lock
+
 # Initial development directories
 config/
 controllers/
