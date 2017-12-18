@@ -35,7 +35,7 @@ CrispySystem is a lightweight minimal framework, originally built for the sole p
    
            // Index
            Route::get('/', function () {
-               echo 'Hello world!';
+               return 'Hello world!';
            })->setName('home');
    
        });
