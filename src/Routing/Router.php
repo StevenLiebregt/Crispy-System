@@ -148,7 +148,7 @@ class Router
      * @param string $name
      * @return null|Route
      */
-    public static function getRouteByName(string $name) : ?Route
+    public static function getRouteByName(string $name) : Route
     {
         foreach (static::$routes as $routes) {
             /** @var Route $route */

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CrispySystem extends Container
 {
-    const VERSION = '1.0.0-alpha';
+    const VERSION = '1.0.0';
 
     /**
      * @var Response $response
@@ -102,7 +102,7 @@ class CrispySystem extends Container
         return $this->respond(404);
     }
 
-    protected function respond(int $code, ?string $content = '') : Response
+    protected function respond(int $code, string $content = '') : Response
     {
         switch ($code) {
             case 404:
