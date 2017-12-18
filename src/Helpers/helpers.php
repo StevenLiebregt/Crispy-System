@@ -34,3 +34,14 @@ function showPlainError(string $message, bool $exit = true)
         exit;
     }
 }
+
+/**
+ * Usefull for api's, sets the header and returns json_encoded data
+ * @param $content
+ * @return string
+ */
+function jsonify($content)
+{
+    header('Content-Type: application/json');
+    return json_encode($content);
+}
