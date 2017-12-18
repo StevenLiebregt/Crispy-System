@@ -4,7 +4,7 @@
  * Simple wrapper for the `print_r` function that automatically adds `<pre>` tags
  * @param $data
  */
-function pr($data) : void
+function pr($data)
 {
     echo '<pre>';
     print_r($data);
@@ -15,7 +15,7 @@ function pr($data) : void
  * Simple wrapper for the `var_dump` function that automatically adds `<pre>` tags
  * @param $data
  */
-function vd($data) : void
+function vd($data)
 {
     echo '<pre>';
     var_dump($data);

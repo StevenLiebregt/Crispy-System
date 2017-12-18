@@ -204,7 +204,7 @@ class Route
     /**
      * Creates a regular expression to match the route
      */
-    public function createRegex() : void
+    public function createRegex()
     {
         $parts = explode('/', ltrim($this->path, '/'));
         $regex = '/^'; // Matches the start of the string

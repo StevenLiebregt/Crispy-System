@@ -76,7 +76,7 @@ class SmartyView implements IView
     /**
      * @param string $dir
      */
-    public function setTemplateDir(string $dir) : void
+    public function setTemplateDir(string $dir)
     {
         $this->smarty->setTemplateDir($dir);
     }

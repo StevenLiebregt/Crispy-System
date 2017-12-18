@@ -112,7 +112,7 @@ class Router
     /**
      * @param \Closure $closure
      */
-    public function routes(\Closure $closure) : void
+    public function routes(\Closure $closure)
     {
         call_user_func($closure);
     }
@@ -121,7 +121,7 @@ class Router
      * @param string $verb
      * @param Route $route
      */
-    public static function addRoute(string $verb, Route $route) : void
+    public static function addRoute(string $verb, Route $route)
     {
         static::$routes[strtoupper($verb)][] = $route;
     }

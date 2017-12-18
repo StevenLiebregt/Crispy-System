@@ -11,7 +11,7 @@ class Config
 
     private static $config = [];
 
-    public static function cache() : void
+    public static function cache()
     {
         $cache = [];
 
@@ -31,7 +31,7 @@ class Config
         file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
     }
 
-    public static function init() : void
+    public static function init()
     {
         $file = ROOT . 'storage/crispysystem.config.php';
 
