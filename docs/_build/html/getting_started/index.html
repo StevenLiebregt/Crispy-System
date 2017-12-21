@@ -99,6 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dependency_injection.html">Dependency Injection</a></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +173,7 @@
 <p>To get started with CrispySystem quicly, read the following. If you want to know more about the individual components, follow the links at the bottom of this page.</p>
 <div class="section" id="quick-start">
 <h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
-<p><strong>Directory structure</strong></p>
+<p><strong>Recomended directory structure</strong></p>
 <p>Create the following directory structure:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project_root</span><span class="o">/</span>
     <span class="n">app</span><span class="o">/</span>
@@ -184,12 +185,31 @@
     <span class="n">composer</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
+<p><strong>! Note !</strong> The <cite>config</cite> and <cite>storage</cite> directories need to be readable and writable.</p>
 <p><strong>Index</strong></p>
 <p>To create a CrispySystem application, create an <cite>index.php</cite> in the <cite>public</cite> folder and put the following content in it:</p>
 <div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
 
+    <span class="k">use</span> <span class="nx">StevenLiebregt\CrispySystem\CrispySystem</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">StevenLiebregt\CrispySystem\Routing\Router</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">StevenLiebregt\CrispySystem\Routing\Route</span><span class="p">;</span>
+
     <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DEVELOPMENT&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
     <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;ROOT&#39;</span><span class="p">,</span> <span class="s1">&#39;/../&#39;</span><span class="p">);</span>
+
+    <span class="k">require</span> <span class="nx">ROOT</span> <span class="o">.</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
+
+    <span class="nv">$crispySystem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CrispySystem</span><span class="p">();</span>
+
+    <span class="nx">Router</span><span class="o">::</span><span class="na">group</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">routes</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">;</span>
+        <span class="p">});</span>
+
+    <span class="p">});</span>
+
+    <span class="nv">$crispySystem</span><span class="o">-&gt;</span><span class="na">run</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>URL rewriting</strong></p>
@@ -202,6 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="routing.html">Routing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependency_injection.html">Dependency Injection</a></li>
 </ul>
 </div>
 </div>

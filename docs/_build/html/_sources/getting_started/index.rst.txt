@@ -6,7 +6,7 @@ To get started with CrispySystem quicly, read the following. If you want to know
 Quick start
 -----------
 
-**Directory structure**
+**Recomended directory structure**
 
 Create the following directory structure::
 
@@ -19,6 +19,8 @@ Create the following directory structure::
         vendor/
         composer.json
 
+**! Note !** The `config` and `storage` directories need to be readable and writable.
+
 **Index**
 
 To create a CrispySystem application, create an `index.php` in the `public` folder and put the following content in it:
@@ -27,8 +29,26 @@ To create a CrispySystem application, create an `index.php` in the `public` fold
 
     <?php
 
+        use StevenLiebregt\CrispySystem\CrispySystem;
+        use StevenLiebregt\CrispySystem\Routing\Router;
+        use StevenLiebregt\CrispySystem\Routing\Route;
+
         define('DEVELOPMENT', true);
         define('ROOT', '/../');
+
+        require ROOT . 'vendor/autoload.php';
+
+        $crispySystem = new CrispySystem();
+
+        Router::group()->routes(function() {
+
+            Route::get('/', function() {
+                return 'Hello World';
+            });
+
+        });
+
+        $crispySystem->run();
 
 **URL rewriting**
 
@@ -43,3 +63,4 @@ Components
     routing
     controllers
     models
+    dependency_injection
