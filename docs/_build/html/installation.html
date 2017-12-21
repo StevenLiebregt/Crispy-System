@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; CrispySystem 1.1.4 documentation</title>
+  <title>Installation &mdash; CrispySystem 1.1.4 documentation</title>
   
 
   
@@ -34,9 +33,11 @@
 
   
         <link rel="index" title="Index"
-              href="#"/>
+              href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="CrispySystem 1.1.4 documentation" href="index.html"/> 
+    <link rel="top" title="CrispySystem 1.1.4 documentation" href="index.html"/>
+        <link rel="next" title="Getting started" href="getting-started.html"/>
+        <link rel="prev" title="Welcome to CrispySystem’s documentation!" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -90,9 +91,15 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting started</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="router.html">Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 
@@ -138,12 +145,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -155,11 +164,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>To install the CrispySystem framework, you will need to pull it in with Composer.</p>
+<p><strong>Add it to the composer.json file</strong></p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;stevenliebregt/crispysystem&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.0&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Add it to an existing project</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="s2">&quot;composer require stevenliebregt/crispysystem&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p><strong>Webserver</strong></p>
+<p>You will need to have a webserver with the ability to rewrite a URL.</p>
+<p><strong>PHP</strong></p>
+<p>The CrispySystem framework requires you to have at least PHP7.0.</p>
+</div>
 </div>
 
 
@@ -169,6 +193,15 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to CrispySystem’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

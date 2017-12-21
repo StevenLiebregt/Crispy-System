@@ -10,7 +10,9 @@ Welcome to CrispySystem's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   installation
+   getting_started/index
+   changelog
 
 Indices and tables
 ==================
