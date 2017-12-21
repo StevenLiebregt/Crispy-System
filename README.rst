@@ -8,4 +8,4 @@ CrispySystem is a lightweight minimal framework, originally built for the sole p
 Documentation
 -------------
 
-Read the documentation at: <crispysystem.readthedocs.io>
+Read the documentation at: <http://crispysystem.readthedocs.io>
