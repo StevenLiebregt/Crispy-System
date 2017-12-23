@@ -9,6 +9,12 @@ use StevenLiebregt\CrispySystem\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CrispySystem
+ * @package StevenLiebregt\CrispySystem
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ * @since 1.0.0
+ */
 class CrispySystem extends Container
 {
     const VERSION = '1.1.4';
@@ -16,8 +22,12 @@ class CrispySystem extends Container
     /**
      * @var Response $response
      */
-    protected $response;
+    private $response;
 
+    /**
+     * CrispySystem constructor.
+     * @since 1.0.0
+     */
     public function __construct()
     {
         require __DIR__ . '/Helpers/helpers.php'; // Load basic helpers
@@ -34,9 +44,7 @@ class CrispySystem extends Container
             showPlainError('Config directory does not exist, please create one in your root');
         }
 
-        /**
-         * Pre-load the configuration
-         */
+        // Pre-load the cached configuration
         if (!file_exists(ROOT . 'storage/crispysystem.config.php') || DEVELOPMENT) {
             Config::cache();
         }
@@ -44,8 +52,10 @@ class CrispySystem extends Container
     }
 
     /**
+     * Sends the response to the user
      * @param Request|null $request
      * @return string
+     * @since 1.0.0
      */
     public function run(Request $request = null)
     {
@@ -56,7 +66,13 @@ class CrispySystem extends Container
         $this->response->send();
     }
 
-    protected function handle(Request $request) : Response
+    /**
+     * Turn a request into a response
+     * @param Request $request
+     * @return Response
+     * @since 1.0.0
+     */
+    private function handle(Request $request) : Response
     {
         $router = $this->getInstance(Router::class);
 
@@ -102,7 +118,13 @@ class CrispySystem extends Container
         return $this->respond(404);
     }
 
-    protected function respond(int $code, string $content = '') : Response
+    /**
+     * @param int $code
+     * @param string $content
+     * @return Response
+     * @since 1.0.0
+     */
+    private function respond(int $code, string $content = '') : Response
     {
         switch ($code) {
             case 404:

@@ -18,10 +18,13 @@ class Config
      */
     private static $config = [];
 
+    /**
+     * Read the config from the cached file
+     * @since 1.0.0
+     */
     public static function init()
     {
         $file = ROOT . 'storage/crispysystem.config.php';
-
         if (!is_readable($file)) {
             showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
         }
@@ -31,6 +34,10 @@ class Config
         static::$config = $config;
     }
 
+    /**
+     * Cache the configuration files into one file
+     * @since 1.0.0
+     */
     public static function cache()
     {
         $cache = [];
@@ -51,7 +58,14 @@ class Config
         file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
     }
 
-    public static function get($key = null)
+    /**
+     * Get the value of a configuration key
+     * @param string|null $key Name of the key you want value of, leave empty to retrieve all,
+     *      multidimensional keys are formatted like: key.subkey.subsubkey.something
+     * @return array|mixed|null Retrieve values or null if key doesn't exist
+     * @since 1.0.0
+     */
+    public static function get(string $key = null)
     {
         if (is_null($key)) {
             return static::$config;

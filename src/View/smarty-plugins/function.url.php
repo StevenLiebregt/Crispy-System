@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Returns the url to a route, by name. If given parameters, those will be filled
+ * @param array $params
+ * @param Smarty_Internal_Template $template
+ * @return mixed|string
+ * @since 1.0.0
+ */
 function smarty_function_url(array $params, Smarty_Internal_Template $template)
 {
     if (isset($params['name'])) { // It's a route name
@@ -10,6 +17,7 @@ function smarty_function_url(array $params, Smarty_Internal_Template $template)
                 $path = str_ireplace('{' . $key . '}', $value, $path);
             }
         }
+
         return $path;
     }
 }

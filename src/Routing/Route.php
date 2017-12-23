@@ -2,6 +2,12 @@
 
 namespace StevenLiebregt\CrispySystem\Routing;
 
+/**
+ * Class Route
+ * @package StevenLiebregt\CrispySystem\Routing
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ * @since 1.0.0
+ */
 class Route
 {
     /**
@@ -55,6 +61,7 @@ class Route
      * @param string $verb Method to match
      * @param string $path Path to match
      * @param string|\Closure $handler Handler to use
+     * @since 1.0.0
      */
     public function __construct(Router $router, string $verb, string $path, $handler)
     {
@@ -72,6 +79,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     public static function get(string $path, $handler) : Route
     {
@@ -83,6 +91,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     public static function post(string $path, $handler) : Route
     {
@@ -94,6 +103,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     public static function put(string $path, $handler) : Route
     {
@@ -105,6 +115,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     public static function patch(string $path, $handler) : Route
     {
@@ -116,6 +127,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     public static function delete(string $path, $handler) : Route
     {
@@ -128,6 +140,7 @@ class Route
      * @param string $path
      * @param $handler
      * @return Route
+     * @since 1.0.0
      */
     protected static function add(string $verb, string $path, $handler) : Route
     {
@@ -145,6 +158,7 @@ class Route
      * @param string $parameter
      * @param string $regex
      * @return Route
+     * @since 1.0.0
      */
     public function where(string $parameter, string $regex) : Route
     {
@@ -157,6 +171,7 @@ class Route
      * @param string $name
      * @param bool $override
      * @return Route
+     * @since 1.0.0
      */
     public function setName(string $name, bool $override = false) : Route
     {
@@ -171,6 +186,7 @@ class Route
 
     /**
      * @return string
+     * @since 1.0.0
      */
     public function getName() : string
     {
@@ -179,6 +195,7 @@ class Route
 
     /**
      * @return string
+     * @since 1.0.0
      */
     public function getPath() : string
     {
@@ -187,6 +204,7 @@ class Route
 
     /**
      * @return callable|\Closure|string
+     * @since 1.0.0
      */
     public function getHandler()
     {
@@ -195,6 +213,7 @@ class Route
 
     /**
      * @return array
+     * @since 1.0.0
      */
     public function getParameters() : array
     {
@@ -203,6 +222,7 @@ class Route
 
     /**
      * Creates a regular expression to match the route
+     * @since 1.0.0
      */
     public function createRegex()
     {
@@ -235,6 +255,7 @@ class Route
     /**
      * @param string $path
      * @return bool
+     * @since 1.0.0
      */
     public function isMatch(string $path) : bool
     {
@@ -252,6 +273,7 @@ class Route
 
     /**
      * @return Router
+     * @since 1.0.0
      */
     protected static function getRouterInstance() : Router
     {

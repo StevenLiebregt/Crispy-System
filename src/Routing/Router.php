@@ -2,6 +2,12 @@
 
 namespace StevenLiebregt\CrispySystem\Routing;
 
+/**
+ * Class Router
+ * @package StevenLiebregt\CrispySystem\Routing
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ * @since 1.0.0
+ */
 class Router
 {
     /**
@@ -10,7 +16,7 @@ class Router
     protected static $instance;
 
     /**
-     * @var array
+     * @var array List of routes
      */
     protected static $routes = [
         'GET' => [],
@@ -42,6 +48,7 @@ class Router
 
     /**
      * @return Router
+     * @since 1.0.0
      */
     public static function group() : Router
     {
@@ -52,6 +59,7 @@ class Router
 
     /**
      * @return Router
+     * @since 1.0.0
      */
     public static function getInstance() : Router
     {
@@ -63,15 +71,18 @@ class Router
     /**
      * @param string $prefix
      * @return $this
+     * @since 1.0.0
      */
     public function setPathPrefix(string $prefix) : Router
     {
         $this->pathPrefix = $prefix;
+
         return $this;
     }
 
     /**
      * @return string
+     * @since 1.0.0
      */
     public function getPathPrefix() : string
     {
@@ -81,15 +92,18 @@ class Router
     /**
      * @param string $prefix
      * @return $this
+     * @since 1.0.0
      */
     public function setHandlerPrefix(string $prefix) : Router
     {
         $this->handlerPrefix = $prefix;
+
         return $this;
     }
 
     /**
      * @return string
+     * @since 1.0.0
      */
     public function getHandlerPrefix() : string
     {
@@ -99,15 +113,18 @@ class Router
     /**
      * @param string $namePrefix
      * @return $this
+     * @since 1.0.0
      */
     public function setNamePrefix(string $namePrefix) : Router
     {
         $this->namePrefix = $namePrefix;
+
         return $this;
     }
 
     /**
      * @return string
+     * @since 1.0.0
      */
     public function getNamePrefix() : string
     {
@@ -116,6 +133,7 @@ class Router
 
     /**
      * @param \Closure $closure
+     * @since 1.0.0
      */
     public function routes(\Closure $closure)
     {
@@ -125,6 +143,7 @@ class Router
     /**
      * @param string $verb
      * @param Route $route
+     * @since 1.0.0
      */
     public static function addRoute(string $verb, Route $route)
     {
@@ -133,6 +152,7 @@ class Router
 
     /**
      * @return array
+     * @since 1.0.0
      */
     public static function getRoutes() : array
     {
@@ -142,6 +162,7 @@ class Router
     /**
      * @param string $verb
      * @return array
+     * @since 1.0.0
      */
     public static function getRoutesByMethod(string $verb) : array
     {
@@ -152,6 +173,7 @@ class Router
      * Tries to fetch a route by name, returns null if it doesn't exist
      * @param string $name
      * @return null|Route
+     * @since 1.0.0
      */
     public static function getRouteByName(string $name) : Route
     {
@@ -171,6 +193,7 @@ class Router
      * @param string $path
      * @param string $method
      * @return bool
+     * @since 1.0.0
      */
     public function match(string $path, string $method) : bool
     {
@@ -182,11 +205,13 @@ class Router
                 return true;
             }
         }
+
         return false;
     }
 
     /**
      * @return Route
+     * @since 1.0.0
      */
     public function getMatch() : Route
     {

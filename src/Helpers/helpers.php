@@ -1,8 +1,13 @@
 <?php
 
 /**
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ */
+
+/**
  * Simple wrapper for the `print_r` function that automatically adds `<pre>` tags
- * @param $data
+ * @param mixed $data Data to print
+ * @since 1.0.0
  */
 function pr($data)
 {
@@ -13,7 +18,8 @@ function pr($data)
 
 /**
  * Simple wrapper for the `var_dump` function that automatically adds `<pre>` tags
- * @param $data
+ * @param mixed $data Data to print
+ * @since 1.0.0
  */
 function vd($data)
 {
@@ -23,8 +29,10 @@ function vd($data)
 }
 
 /**
- * @param string $message
- * @param bool $exit
+ * Shows an error message and optionally exits
+ * @param string $message Error message to show
+ * @param bool $exit Exit or not
+ * @since 1.0.0
  */
 function showPlainError(string $message, bool $exit = true)
 {
@@ -37,11 +45,13 @@ function showPlainError(string $message, bool $exit = true)
 
 /**
  * Usefull for api's, sets the header and returns json_encoded data
- * @param $content
- * @return string
+ * @param mixed $content Content to json_encode
+ * @return string Json_encoded content
+ * @since 1.1.2
  */
-function jsonify($content)
+function jsonify($content) : string
 {
     header('Content-Type: application/json');
+
     return json_encode($content);
 }
