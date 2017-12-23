@@ -5,6 +5,8 @@ Routing is an essential part of the framework, it allows you to map an action to
 
 The namespace for this component is *StevenLiebregt\\CrispySystem\\Routing*. In this namespace are the two following classes: *Router* and *Route*.
 
+All routes need to be added before the *CrispySystem::run* method.
+
 Methods
 -------
 
@@ -28,6 +30,8 @@ Handler
 
 .. code-block:: php
 
+    <?php
+
     Route::get('/home', function() {
         return 'Welcome home!';
     });
@@ -35,6 +39,8 @@ Handler
 **Controller**
 
 .. code-block:: php
+
+    <?php
 
     Route::get('/home', 'HomeController.welcome');
 
@@ -48,6 +54,8 @@ Routes can be given names, you can use these names to retrieve a route. For exam
 The *Route::setName* method is chained off the HTTP method method.
 
 .. code-block:: php
+
+    <?php
 
     Route::get('/foo', function() {
         return 'foo';
@@ -64,6 +72,8 @@ To add a variable part in your route, you need to add a section wrapped in curly
  * A regular expression, to which the part will need to match. If the regular expression has a capturing group, the value will be auto-wired into the handler.
 
 .. code-block:: php
+
+    <?php
 
     Route::get('/products/{id}', function($id) {
         return 'I want product id: ' . $id;

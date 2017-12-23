@@ -183,6 +183,7 @@
 <h1>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h1>
 <p>Routing is an essential part of the framework, it allows you to map an action to a URL.</p>
 <p>The namespace for this component is <em>StevenLiebregt\CrispySystem\Routing</em>. In this namespace are the two following classes: <em>Router</em> and <em>Route</em>.</p>
+<p>All routes need to be added before the <em>CrispySystem::run</em> method.</p>
 <div class="section" id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
 <p>Each of the following HTTP methods have a static <em>Route</em> method with the same name.</p>
@@ -206,13 +207,17 @@
 <div class="section" id="handler">
 <h2>Handler<a class="headerlink" href="#handler" title="Permalink to this headline">¶</a></h2>
 <p><strong>Closure</strong></p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/home&#39;, function() {</span>
-<span class="x">    return &#39;Welcome home!&#39;;</span>
-<span class="x">});</span>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;Welcome home!&#39;</span><span class="p">;</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p><strong>Controller</strong></p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/home&#39;, &#39;HomeController.welcome&#39;);</span>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">,</span> <span class="s1">&#39;HomeController.welcome&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This route’s action will return the <em>welcome</em> method from the <em>HomeController</em>.</p>
@@ -221,9 +226,11 @@
 <h2>Naming<a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h2>
 <p>Routes can be given names, you can use these names to retrieve a route. For example, you can use this in a template / view to fill a <cite>href</cite> element with a named url. This way you can change the url without editing all templates.</p>
 <p>The <em>Route::setName</em> method is chained off the HTTP method method.</p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/foo&#39;, function() {</span>
-<span class="x">    return &#39;foo&#39;;</span>
-<span class="x">})-&gt;setName(&#39;bar&#39;);</span>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/foo&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+<span class="p">})</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can use <em>Router::getRouteByName(‘bar’)</em> to retrieve the above route definition.</p>
@@ -237,9 +244,11 @@
 <li>A regular expression, to which the part will need to match. If the regular expression has a capturing group, the value will be auto-wired into the handler.</li>
 </ul>
 </div></blockquote>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/products/{id}&#39;, function($id) {</span>
-<span class="x">    return &#39;I want product id: &#39; . $id;</span>
-<span class="x">})-&gt;where(&#39;id&#39;, &#39;(\\d+)&#39;);</span>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/products/{id}&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">&#39;I want product id: &#39;</span> <span class="o">.</span> <span class="nv">$id</span><span class="p">;</span>
+<span class="p">})</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;(\\d+)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This route would match <em>/products/193</em> and would return ‘<em>I want product id: 193</em>’, but it wouldn’t match <em>/products/bar</em> since the parameter part does not match the regular expression.</p>
