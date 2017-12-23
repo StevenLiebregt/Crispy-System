@@ -29,26 +29,26 @@ To create a CrispySystem application, create an `index.php` in the `public` fold
 
     <?php
 
-        use StevenLiebregt\CrispySystem\CrispySystem;
-        use StevenLiebregt\CrispySystem\Routing\Router;
-        use StevenLiebregt\CrispySystem\Routing\Route;
+    use StevenLiebregt\CrispySystem\CrispySystem;
+    use StevenLiebregt\CrispySystem\Routing\Router;
+    use StevenLiebregt\CrispySystem\Routing\Route;
 
-        define('DEVELOPMENT', true);
-        define('ROOT', './../');
+    define('DEVELOPMENT', true);
+    define('ROOT', './../');
 
-        require ROOT . 'vendor/autoload.php';
+    require ROOT . 'vendor/autoload.php';
 
-        $crispySystem = new CrispySystem();
+    $crispySystem = new CrispySystem();
 
-        Router::group()->routes(function() {
+    Router::group()->routes(function() {
 
-            Route::get('/', function() {
-                return 'Hello World';
-            });
-
+        Route::get('/', function() {
+            return 'Hello World';
         });
 
-        $crispySystem->run();
+    });
+
+    $crispySystem->run();
 
 **URL rewriting**
 
@@ -63,4 +63,5 @@ Components
     routing
     controllers
     models
+    view
     dependency_injection

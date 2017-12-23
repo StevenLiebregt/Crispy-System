@@ -97,9 +97,17 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#components">Components</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Routing</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Routing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handler">Handler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#naming">Naming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grouping">Grouping</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view.html">View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dependency_injection.html">Dependency Injection</a></li>
 </ul>
 </li>
@@ -173,6 +181,73 @@
             
   <div class="section" id="routing">
 <h1>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h1>
+<p>Routing is an essential part of the framework, it allows you to map an action to a URL.</p>
+<p>The namespace for this component is <em>StevenLiebregt\CrispySystem\Routing</em>. In this namespace are the two following classes: <em>Router</em> and <em>Route</em>.</p>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>Each of the following HTTP methods have a static <em>Route</em> method with the same name.</p>
+<blockquote>
+<div><ul class="simple">
+<li>GET (<em>Route::get</em>)</li>
+<li>POST (<em>Route::post</em>)</li>
+<li>PUT (<em>Route::put</em>)</li>
+<li>PATCH (<em>Route::patch</em>)</li>
+<li>DELETE (<em>Route::delete</em>)</li>
+</ul>
+</div></blockquote>
+<p>Each of these methods take 2 arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The URI path to match, this needs to be a string</li>
+<li>The handler, this can be a closure which returns a string, or a (string) path to a <em>Controller</em> class and method.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="handler">
+<h2>Handler<a class="headerlink" href="#handler" title="Permalink to this headline">¶</a></h2>
+<p><strong>Closure</strong></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/home&#39;, function() {</span>
+<span class="x">    return &#39;Welcome home!&#39;;</span>
+<span class="x">});</span>
+</pre></div>
+</div>
+<p><strong>Controller</strong></p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/home&#39;, &#39;HomeController.welcome&#39;);</span>
+</pre></div>
+</div>
+<p>This route’s action will return the <em>welcome</em> method from the <em>HomeController</em>.</p>
+</div>
+<div class="section" id="naming">
+<h2>Naming<a class="headerlink" href="#naming" title="Permalink to this headline">¶</a></h2>
+<p>Routes can be given names, you can use these names to retrieve a route. For example, you can use this in a template / view to fill a <cite>href</cite> element with a named url. This way you can change the url without editing all templates.</p>
+<p>The <em>Route::setName</em> method is chained off the HTTP method method.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/foo&#39;, function() {</span>
+<span class="x">    return &#39;foo&#39;;</span>
+<span class="x">})-&gt;setName(&#39;bar&#39;);</span>
+</pre></div>
+</div>
+<p>You can use <em>Router::getRouteByName(‘bar’)</em> to retrieve the above route definition.</p>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p>To add a variable part in your route, you need to add a section wrapped in curly braces. Then you need to chain the <em>Route::where</em> method off the HTTP method method. This <em>Route::where</em> method takes the following 2 parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The name of the variable part, this needs to be the same as what is between the curly braces.</li>
+<li>A regular expression, to which the part will need to match. If the regular expression has a capturing group, the value will be auto-wired into the handler.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="x">Route::get(&#39;/products/{id}&#39;, function($id) {</span>
+<span class="x">    return &#39;I want product id: &#39; . $id;</span>
+<span class="x">})-&gt;where(&#39;id&#39;, &#39;(\\d+)&#39;);</span>
+</pre></div>
+</div>
+<p>This route would match <em>/products/193</em> and would return ‘<em>I want product id: 193</em>’, but it wouldn’t match <em>/products/bar</em> since the parameter part does not match the regular expression.</p>
+</div>
+<div class="section" id="grouping">
+<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
 </div>
 
 
