@@ -84,4 +84,31 @@ This route would match */products/193* and would return '*I want product id: 193
 Grouping
 --------
 
-TODO
+You can also group routes so you can add:
+
+ * path-prefixes
+ * handler-prefixes
+ * name-prefixes
+
+These prefixes will be added to all routes within the group. To start a group, use the *Router::group* method, then chain the *Router::routes* method, which takes a closure in which you can add your routes the normal way.
+
+.. code-block:: php
+
+    <?php
+
+    Router::group()
+        ->setPathPrefix('/api')
+        ->setHandlerPrefix('Controllers\\Backend\\')
+        ->setNamePrefix('api.backend.')
+        ->routes(function() {
+
+            Route::get('', function() {
+                return 'Hello this is api speaking';
+            });
+
+            Route::get('/products', 'ProductsController.index')
+                ->setName('products.index');
+
+        });
+
+The above example will add 2 routes, the first one will listen to */api* and the second one will answer to */api/products*. With the second one, the handler gets prefixed so it will become *Controllers\\Backend\\ProductsController.index*, this also goes for the route name which will become *api.backend.products.index*.

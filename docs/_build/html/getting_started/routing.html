@@ -255,7 +255,34 @@
 </div>
 <div class="section" id="grouping">
 <h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<p>You can also group routes so you can add:</p>
+<blockquote>
+<div><ul class="simple">
+<li>path-prefixes</li>
+<li>handler-prefixes</li>
+<li>name-prefixes</li>
+</ul>
+</div></blockquote>
+<p>These prefixes will be added to all routes within the group. To start a group, use the <em>Router::group</em> method, then chain the <em>Router::routes</em> method, which takes a closure in which you can add your routes the normal way.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nx">Router</span><span class="o">::</span><span class="na">group</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setPathPrefix</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setHandlerPrefix</span><span class="p">(</span><span class="s1">&#39;Controllers\\Backend\\&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">setNamePrefix</span><span class="p">(</span><span class="s1">&#39;api.backend.&#39;</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">routes</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">&#39;Hello this is api speaking&#39;</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/products&#39;</span><span class="p">,</span> <span class="s1">&#39;ProductsController.index&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">&#39;products.index&#39;</span><span class="p">);</span>
+
+    <span class="p">});</span>
+</pre></div>
+</div>
+<p>The above example will add 2 routes, the first one will listen to <em>/api</em> and the second one will answer to <em>/api/products</em>. With the second one, the handler gets prefixed so it will become <em>Controllers\Backend\ProductsController.index</em>, this also goes for the route name which will become <em>api.backend.products.index</em>.</p>
 </div>
 </div>
 
