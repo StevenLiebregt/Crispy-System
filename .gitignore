@@ -3,14 +3,11 @@
 *.lock
 
 # Initial development directories
+app/
 config/
-controllers/
-modules/
-models/
 public/
 storage/
-schemas/
-templates/
+resources/
 
 # Composer vendor folder
 vendor/
