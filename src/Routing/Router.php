@@ -50,8 +50,13 @@ class Router
         return static::$instance;
     }
 
+    /**
+     * @return Router
+     */
     public static function getInstance() : Router
     {
+        static::$instance = static::$instance ? static::$instance : new static();
+
         return static::$instance;
     }
 

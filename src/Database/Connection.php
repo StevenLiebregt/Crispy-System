@@ -8,16 +8,9 @@ use StevenLiebregt\CrispySystem\Helpers\Config;
 
 /**
  * Class Connection
- *
- * Expects a file /config/database.php with the following keys
- *  driver: 'mysql' // or another type
- *  host: '172.17.0.2' // or another host
- *  dbname: 'name_of_your_database' // or another name
- *  port: '3306' // or another port
- *  user: 'username' // or another username
- *  pass: 'password' // or another password
- *
  * @package StevenLiebregt\CrispySystem\Database
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ * @since 1.1.3
  */
 class Connection
 {
@@ -26,6 +19,11 @@ class Connection
      */
     private $pdo;
 
+    /**
+     * Connection constructor.
+     * Set the PDO connection with the data from the /config/database.php file
+     * @since 1.1.3
+     */
     public function __construct()
     {
         $dsn = sprintf('%s:host=%s;dbname=%s;port=%s',
@@ -41,10 +39,15 @@ class Connection
             $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
             $this->pdo = $pdo;
         } catch (PDOException $e) {
-            exit($e->getMessage());
+            showPlainError($e->getMessage());
         }
     }
 
+    /**
+     * Returns PDO instance
+     * @return PDO the PDO instance
+     * @since 1.1.3
+     */
     public function getPdo() : \PDO
     {
         return $this->pdo;

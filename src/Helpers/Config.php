@@ -5,11 +5,31 @@ namespace StevenLiebregt\CrispySystem\Helpers;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Class Config
+ * @package StevenLiebregt\CrispySystem\Helpers
+ * @author Steven Liebregt <stevenliebregt@outlook.com>
+ * @since 1.0.0
+ */
 class Config
 {
-    private static $skip = false;
-
+    /**
+     * @var array Config read from cached file
+     */
     private static $config = [];
+
+    public static function init()
+    {
+        $file = ROOT . 'storage/crispysystem.config.php';
+
+        if (!is_readable($file)) {
+            showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
+        }
+
+        $config = unserialize(file_get_contents($file));
+
+        static::$config = $config;
+    }
 
     public static function cache()
     {
@@ -29,19 +49,6 @@ class Config
         }
 
         file_put_contents(ROOT . 'storage/crispysystem.config.php', serialize($cache));
-    }
-
-    public static function init()
-    {
-        $file = ROOT . 'storage/crispysystem.config.php';
-
-        if (!is_readable($file)) {
-            showPlainError('The file `crispysystem.config.php` in the `storage` directory is not readable');
-        }
-
-        $config = unserialize(file_get_contents($file));
-
-        static::$config = $config;
     }
 
     public static function get($key = null)

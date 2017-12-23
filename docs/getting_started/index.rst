@@ -34,7 +34,7 @@ To create a CrispySystem application, create an `index.php` in the `public` fold
         use StevenLiebregt\CrispySystem\Routing\Route;
 
         define('DEVELOPMENT', true);
-        define('ROOT', '/../');
+        define('ROOT', './../');
 
         require ROOT . 'vendor/autoload.php';
 
