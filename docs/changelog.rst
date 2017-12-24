@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.2.0
+-----
+
+**New features**
+
+* Added base container
+* Added complete documentation
+
 1.1.4
 -----
 

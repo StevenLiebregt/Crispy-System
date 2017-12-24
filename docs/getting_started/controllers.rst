@@ -3,6 +3,10 @@ Controllers
 
 Controllers will be called after matching a URL.
 
+The framework includes a base *Controller* class which can be extended.
+
+The base controller has a property *crispySystem* which contains a copy of the *Container* class for Dependency Injection.
+
 Controllers must return a string.
 
 Example
@@ -14,9 +18,10 @@ Example
 
     namespace App\Controllers;
 
+    use StevenLiebregt\CrispySystem\Controllers\Controller;
     use StevenLiebregt\CrispySystem\View\SmartyView;
 
-    class ProductsController
+    class ProductsController extends Controller
     {
         private $view;
 

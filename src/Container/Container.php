@@ -107,7 +107,7 @@ class Container
      * @return mixed Value returned in method
      * @since 1.0.0
      */
-    public function resolveFunction(\Closure $closure)
+    public function resolveClosure(\Closure $closure)
     {
         $reflection = new \ReflectionFunction($closure);
 

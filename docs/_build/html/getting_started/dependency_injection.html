@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="CrispySystem 1.1.4 documentation" href="../index.html"/>
         <link rel="up" title="Getting started" href="index.html"/>
-        <link rel="next" title="Changelog" href="../changelog.html"/>
-        <link rel="prev" title="Models" href="models.html"/> 
+        <link rel="next" title="Helpers" href="helpers/index.html"/>
+        <link rel="prev" title="Database" href="database.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -98,9 +98,17 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#components">Components</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view.html">View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Dependency Injection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html">Database</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dependency Injection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-instance">Create instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-instance">Get instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resolve-closure">Resolve closure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resolve-method">Resolve method</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="helpers/index.html">Helpers</a></li>
 </ul>
 </li>
 </ul>
@@ -173,6 +181,34 @@
             
   <div class="section" id="dependency-injection">
 <h1>Dependency Injection<a class="headerlink" href="#dependency-injection" title="Permalink to this headline">¶</a></h1>
+<p>Dependency Injection manages dependencies for you, as the name implies.</p>
+<p>This class can be accessed by extending the base <em>Controller</em> class, as the property <em>crispySystem</em>.</p>
+<p><strong>! Note !</strong> The parameters in a method or function should be type-hinted in order for this to work.</p>
+<div class="section" id="create-instance">
+<h2>Create instance<a class="headerlink" href="#create-instance" title="Permalink to this headline">¶</a></h2>
+<p>The <em>createInstance</em> method takes the name of a class (including namespace) as argument. It resolves any dependencies for the constructor recursively, and returns the class instance.</p>
+<p>This method always creates a new instance, in comparison to the <em>getInstance</em> method which will re-use a previously created instance, or creates a new one if it doesn’t exist.</p>
+</div>
+<div class="section" id="get-instance">
+<h2>Get instance<a class="headerlink" href="#get-instance" title="Permalink to this headline">¶</a></h2>
+<p>The <em>getInstance</em> method takes the name of a class (including namespace) as argument. It resolves any dependencies for the constructor recursively, and returns the class instance.</p>
+<p>This method will re-use a previously created instance, or create a new one if it doesn’t exist.</p>
+</div>
+<div class="section" id="resolve-closure">
+<h2>Resolve closure<a class="headerlink" href="#resolve-closure" title="Permalink to this headline">¶</a></h2>
+<p>The <em>resolveClosure</em> method can be used to resolve dependencies in a closure. It takes one parameter, which should be a closure.</p>
+</div>
+<div class="section" id="resolve-method">
+<h2>Resolve method<a class="headerlink" href="#resolve-method" title="Permalink to this headline">¶</a></h2>
+<p>The <em>resolveMethod</em> method can be used to resolve a specific method of an instance, it takes the following arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li>instance, the instance of which you want to resolve a method</li>
+<li>method, the name of the method to resolve</li>
+<li>parameters <strong>(optional)</strong>, if given, any parameters you give in this associative array, where the key = the name of the parameter, and the value the value, will be used to fill parameter slots. If a value is not given, the default will be used or resolved.</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -185,10 +221,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="helpers/index.html" class="btn btn-neutral float-right" title="Helpers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="models.html" class="btn btn-neutral" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral" title="Database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

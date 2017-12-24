@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CrispySystem extends Container
 {
-    const VERSION = '1.1.4';
+    const VERSION = '1.2.0';
 
     /**
      * @var Response $response
@@ -30,7 +30,7 @@ class CrispySystem extends Container
      */
     public function __construct()
     {
-        require __DIR__ . '/Helpers/helpers.php'; // Load basic helpers
+        require_once __DIR__ . '/Helpers/helpers.php'; // Load basic helpers
 
         if (!file_exists(ROOT . 'storage') || !is_dir(ROOT . 'storage')) {
             showPlainError('Storage directory does not exist, please create one in your root');
@@ -85,13 +85,14 @@ class CrispySystem extends Container
 
             if (is_object($handler) && $handler instanceof \Closure) {
                 try {
-                    $content = $this->resolveFunction($handler);
+                    $content = $this->resolveClosure($handler);
                 } catch (\Exception $e) {
                     if (DEVELOPMENT) {
                         showPlainError('Something went wrong while resolving a closure, details below:', false);
                         pr($e);
                         exit;
                     }
+
                     return $this->respond(500);
                 }
             } else {
@@ -100,6 +101,9 @@ class CrispySystem extends Container
 
                 try {
                     $instance = $this->getInstance($controller);
+                    if (method_exists($instance, 'setCrispySystem')) {
+                        $instance->setCrispySystem($this);
+                    }
                     $content = $this->resolveMethod($instance, $method, $match->getParameters());
                 } catch (\Exception $e) {
                     if (DEVELOPMENT) {
@@ -107,6 +111,7 @@ class CrispySystem extends Container
                         pr($e);
                         exit;
                     }
+
                     return $this->respond(500);
                 }
             }
