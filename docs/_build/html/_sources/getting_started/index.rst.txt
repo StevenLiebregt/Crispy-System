@@ -63,5 +63,6 @@ Components
     routing
     view
     controllers
-    models
+    database
     dependency_injection
+    helpers/index

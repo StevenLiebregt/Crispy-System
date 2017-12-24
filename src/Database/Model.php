@@ -79,12 +79,14 @@ abstract class Model
 
     /**
      * Run a SELECT query by ID
-     * @param string $id The id of the record you want to retrieve
+     * @param int|string $id The id of the record you want to retrieve
      * @return mixed Query result
      * @since 1.1.4
      */
-    public function getOneById(string $id)
+    public function getOneById($id)
     {
+        $id = (string)$id;
+
         $fields = implode(', ', $this->fields);
         $sql = 'SELECT ' . $fields . ' FROM ' . $this->table . ' WHERE ' . $this->table . '.id = :id';
         $query = $this->pdo->prepare($sql);
