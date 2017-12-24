@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="CrispySystem 1.1.4 documentation" href="../index.html"/>
         <link rel="up" title="Getting started" href="index.html"/>
-        <link rel="next" title="Dependency Injection" href="dependency_injection.html"/>
-        <link rel="prev" title="Models" href="models.html"/> 
+        <link rel="next" title="Controllers" href="controllers.html"/>
+        <link rel="prev" title="Routing" href="routing.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -98,9 +98,16 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#components">Components</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">View</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setting-template-directory">Setting template directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-the-template">Setting the template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#displaying">Displaying</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#assigning-data-to-templates">Assigning data to templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="controllers.html">Controllers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dependency_injection.html">Dependency Injection</a></li>
 </ul>
 </li>
@@ -174,6 +181,50 @@
             
   <div class="section" id="view">
 <h1>View<a class="headerlink" href="#view" title="Permalink to this headline">¶</a></h1>
+<p>For views this framework uses the templating engine <em>Smarty 3</em> &lt;<a class="reference external" href="https://www.smarty.net">https://www.smarty.net</a>&gt;.</p>
+<div class="section" id="setting-template-directory">
+<h2>Setting template directory<a class="headerlink" href="#setting-template-directory" title="Permalink to this headline">¶</a></h2>
+<p>Use this method to set the template directory. From this directory templates will be sought using the <em>SmartyView::display</em> method.</p>
+<p>The default template directory is: <em>ROOT/resources/templates</em>.</p>
+</div>
+<div class="section" id="setting-the-template">
+<h2>Setting the template<a class="headerlink" href="#setting-the-template" title="Permalink to this headline">¶</a></h2>
+<p>The method <em>SmartyView::template</em> is used to set the template to be displayed.</p>
+<p>The method takes one parameter, this needs to be the template filename including the extension.</p>
+</div>
+<div class="section" id="displaying">
+<h2>Displaying<a class="headerlink" href="#displaying" title="Permalink to this headline">¶</a></h2>
+<p><strong>! Note !</strong> Before you use this method, make sure you have set a template.</p>
+<p>To display the template, the value of the <em>SmartyView::display</em> method needs to be returned from the controller.</p>
+</div>
+<div class="section" id="assigning-data-to-templates">
+<h2>Assigning data to templates<a class="headerlink" href="#assigning-data-to-templates" title="Permalink to this headline">¶</a></h2>
+<p>To assign data to a variable inside a template, you can use the <em>SmartyView::with</em> method, which takes an array, with <em>key / value</em> definitions.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="o">-&gt;</span><span class="na">with</span><span class="p">([</span>
+    <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1235</span><span class="p">,</span>
+    <span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
+<p>The above would allow you to access the variables <em>id</em> and <em>foo</em> inside the template which give you <em>1235</em> and the array with values <em>test</em> and <em>bar</em> respectively.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nv">$view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SmartyView</span><span class="p">();</span>
+<span class="nv">$view</span><span class="o">-&gt;</span><span class="na">setTemplateDir</span><span class="p">(</span><span class="s1">&#39;/root/templates&#39;</span><span class="p">);</span>
+<span class="nv">$view</span><span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;home.tpl&#39;</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$view</span><span class="o">-&gt;</span><span class="na">display</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>In the above example, the class looks for the template <em>home.tpl</em> in the directory <em>/root/templates</em>.</p>
+</div>
 </div>
 
 
@@ -186,10 +237,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dependency_injection.html" class="btn btn-neutral float-right" title="Dependency Injection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="controllers.html" class="btn btn-neutral float-right" title="Controllers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="models.html" class="btn btn-neutral" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="routing.html" class="btn btn-neutral" title="Routing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

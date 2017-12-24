@@ -72,6 +72,9 @@ class SmartyView
             'version' => CrispySystem::VERSION,
             'config' => Config::get(),
         ]);
+
+        // Set default template dir
+        $this->setTemplateDir(ROOT . 'resources/templates');
     }
 
     /**

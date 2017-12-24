@@ -61,7 +61,7 @@ Components
     :maxdepth: 1
 
     routing
+    view
     controllers
     models
-    view
     dependency_injection

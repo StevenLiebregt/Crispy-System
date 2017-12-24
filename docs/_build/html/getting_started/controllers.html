@@ -98,8 +98,12 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#quick-start">Quick start</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#components">Components</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view.html">View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dependency_injection.html">Dependency Injection</a></li>
 </ul>
 </li>
@@ -173,6 +177,45 @@
             
   <div class="section" id="controllers">
 <h1>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h1>
+<p>Controllers will be called after matching a URL.</p>
+<p>Controllers must return a string.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">StevenLiebregt\CrispySystem\View\SmartyView</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ProductsController</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$view</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nx">__construct</span><span class="p">(</span><span class="nx">SmartyView</span> <span class="nv">$view</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span> <span class="o">=</span> <span class="nv">$view</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span>
+            <span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;index.tpl&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">display</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">item</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">view</span>
+            <span class="o">-&gt;</span><span class="na">template</span><span class="p">(</span><span class="s1">&#39;item.tpl&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">with</span><span class="p">([</span>
+                <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">,</span>
+            <span class="p">])</span>
+            <span class="o">-&gt;</span><span class="na">display</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
