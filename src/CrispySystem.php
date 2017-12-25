@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CrispySystem extends Container
 {
-    const VERSION = '1.2.0';
+    const VERSION = 'v1.3.0';
 
     /**
      * @var Response $response
