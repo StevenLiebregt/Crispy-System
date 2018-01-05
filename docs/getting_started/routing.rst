@@ -23,6 +23,8 @@ Each of these methods take 2 arguments:
  * The URI path to match, this needs to be a string
  * The handler, this can be a closure which returns a string, or a (string) path to a *Controller* class and method.
 
+There are also 2 special route-adding methods, these being: *Route::any*, which takes the same arguments as the other route-adding methods, but adds a route that matches any HTTP verb, and *Route::match*, which takes 3 arguments. The first argument is an array of HTTP verbs, the route should match to, and the last two arguments are the same as in the other route-adding methods.
+
 Handler
 --------
 

@@ -1,6 +1,28 @@
 Changelog
 =========
 
+1.4.0
+-----
+
+**New features**
+
+* Added the *Route::any* method, which matches any HTTP verb
+* Added the *Route::match* method, which matches a list of HTTP verbs
+
+1.3.1
+-----
+
+**Fixes**
+
+* Fixed a routing issue when the name was not set
+
+1.3.0
+-----
+
+**New features**
+
+* Added Smarty *config* plugin, which allows you to retrieve config settings in templates
+
 1.2.0
 -----
 

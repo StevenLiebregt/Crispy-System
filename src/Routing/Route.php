@@ -135,6 +135,59 @@ class Route
     }
 
     /**
+     * Add a route that matches any HTTP verb
+     * @param string $path
+     * @param $handler
+     * @return array
+     * @since 1.4.0
+     */
+    public static function any(string $path, $handler) : array
+    {
+        return [
+            static::get($path, $handler),
+            static::post($path, $handler),
+            static::put($path, $handler),
+            static::patch($path, $handler),
+            static::delete($path, $handler),
+        ];
+    }
+
+    /**
+     * Add a route that matches the given HTTP verbs
+     * @param array $verbs
+     * @param string $path
+     * @param $handler
+     * @return array
+     * @since 1.4.0
+     */
+    public static function match(array $verbs, string $path, $handler) : array
+    {
+        $routes = [];
+
+        foreach ($verbs as $verb) {
+            switch (strtolower($verb)) {
+                case 'get':
+                    $routes[] = static::get($path, $handler);
+                    break;
+                case 'post':
+                    $routes[] = static::post($path, $handler);
+                    break;
+                case 'put':
+                    $routes[] = static::put($path, $handler);
+                    break;
+                case 'patch':
+                    $routes[] = static::patch($path, $handler);
+                    break;
+                case 'delete':
+                    $routes[] = static::delete($path, $handler);
+                    break;
+            }
+        }
+
+        return $routes;
+    }
+
+    /**
      * Creates a new route
      * @param string $verb
      * @param string $path
