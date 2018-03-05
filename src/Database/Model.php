@@ -157,7 +157,7 @@ abstract class Model
         }
 
         // Assign values
-        foreach ($values as $key => $value) {
+        foreach ($values as $key => &$value) {
             $query->bindParam(':' . $key, $value);
         }
 
