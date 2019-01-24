@@ -1,3 +1,8 @@
+Abandoned !
+===========
+
+You can still use this project, but it won't be updated.
+
 CrispySystem
 ============
 
